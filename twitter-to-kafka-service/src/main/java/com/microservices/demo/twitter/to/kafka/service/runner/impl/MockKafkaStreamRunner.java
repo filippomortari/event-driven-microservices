@@ -1,6 +1,6 @@
 package com.microservices.demo.twitter.to.kafka.service.runner.impl;
 
-import com.microservices.demo.twitter.to.kafka.service.config.TwitterToKafkaServiceConfig;
+import com.microservices.demo.config.TwitterToKafkaServiceConfig;
 import com.microservices.demo.twitter.to.kafka.service.listener.TwitterKafkaStatusListener;
 import com.microservices.demo.twitter.to.kafka.service.runner.StreamRunner;
 import lombok.extern.slf4j.Slf4j;
