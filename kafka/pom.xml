@@ -10,10 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>kafka</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>kafka-model</module>
-    </modules>
 
 
 </project>
