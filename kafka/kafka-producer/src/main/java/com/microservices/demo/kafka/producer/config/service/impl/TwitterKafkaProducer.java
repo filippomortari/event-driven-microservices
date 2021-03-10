@@ -19,8 +19,8 @@ public class TwitterKafkaProducer implements KafkaProducer<Long, TwitterAvroMode
 
     private final KafkaTemplate<Long, TwitterAvroModel> kafkaTemplate;
 
-    public TwitterKafkaProducer(KafkaTemplate<Long, TwitterAvroModel> kafkaTemplate) {
-        this.kafkaTemplate = kafkaTemplate;
+    public TwitterKafkaProducer(KafkaTemplate<Long, TwitterAvroModel> template) {
+        this.kafkaTemplate = template;
     }
 
     @Override
