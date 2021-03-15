@@ -2,13 +2,13 @@ twitter-to-kafka-service:
   twitter-keywords:
     - Java
     - Microservices
-    - Spring
     - Kafka
     - Elasticsearch
-  enable-mock-tweets: true
+  welcome-message: Hello microservices!
+  enable-mock-tweets: false
   mock-min-tweet-length: 5
   mock-max-tweet-length: 15
-  mock-sleep-ms: 1000
+  mock-sleep-ms: 10000
 
 retry-config:
   initial-interval-ms: 1000

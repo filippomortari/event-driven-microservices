@@ -2,13 +2,15 @@ server:
   port: 8888
 
 spring:
+  application:
+    name: configserver
   cloud:
     config:
       server:
-        native:
-          searchLocations: file://${user.home}/workspace/event-driven-microservices/config-server-repository
-  profiles:
-    active: native
+        git:
+          uri: file://${HOME}/workspace/config-server-repository
+#          uri: https://github.com/spring-cloud-samples/config-repo
+    fail-fast: true
 
 logging:
   level:
