@@ -9,8 +9,10 @@ services:
       - "./check-config-server-started.sh:/usr/local/bin/check-config-server-started.sh"
     user: root
     entrypoint: ["check-config-server-started.sh"]
+    restart: on-failure
     depends_on:
       - config-server
+      - schema-registry
     environment:
       - "JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -Xms128m -Xmx256m"
       - "LOGGING_LEVEL_COM_MICROSERVICES_DEMO=info"
@@ -19,12 +21,13 @@ services:
       - "KAFKA-CONFIG_BOOTSTRAP-SERVERS=kafka-broker-1:9092, kafka-broker-2:9092, kafka-broker-3:9092"
       - "KAFKA-CONFIG_SCHEMA-REGISTRY-URL=http://schema-registry:8081"
       - "TWITTER-TO-KAFKA-SERVICE_ENABLE-MOCK-TWEETS=true"
-      - "SPRING_CLOUD_CONFIG_URI=http://config-server:8888"
+      - "CONFIG_SERVER_URI=http://config-server:8888"
       - "ENCRYPT_KEY=${ENCRYPT_KEY}"
     networks:
       - ${GLOBAL_NETWORK:-services}
   config-server:
     image: ${GROUP_ID}/config.server:${SERVICE_VERSION:-latest}
+    restart: on-failure
     ports:
       - "5006:5006"
     volumes:

@@ -17,6 +17,7 @@ services:
   schema-registry:
     image: confluentinc/cp-schema-registry:${KAFKA_VERSION}
     hostname: schema-registry
+    restart: on-failure
     depends_on:
       - zookeeper
       - kafka-broker-1
@@ -32,6 +33,7 @@ services:
     networks:
       - ${GLOBAL_NETWORK:-kafka}
   kafka-broker-1:
+    restart: on-failure
     image: confluentinc/cp-kafka:${KAFKA_VERSION}
     hostname: kafka-broker-1
     ports:
@@ -48,6 +50,7 @@ services:
     networks:
       - ${GLOBAL_NETWORK:-kafka}
   kafka-broker-2:
+    restart: on-failure
     image: confluentinc/cp-kafka:${KAFKA_VERSION}
     hostname: kafka-broker-2
     ports:
@@ -64,6 +67,7 @@ services:
     networks:
       - ${GLOBAL_NETWORK:-kafka}
   kafka-broker-3:
+    restart: on-failure
     image: confluentinc/cp-kafka:${KAFKA_VERSION}
     hostname: kafka-broker-3
     ports:
