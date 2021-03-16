@@ -14,7 +14,7 @@ spring:
   security:
     user:
       name: spring_cloud_user
-      password: ###
+      password: '{cipher}134abf3c43206f201b736c653599897e291cae738bbfbe63fa740532e869d8c014642c116cdadba26813f28530e80bbb'
 
 logging:
   level:
