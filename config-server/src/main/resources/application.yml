@@ -8,9 +8,13 @@ spring:
     config:
       server:
         git:
-          uri: file://${HOME}/workspace/config-server-repository
-#          uri: https://github.com/spring-cloud-samples/config-repo
+          uri: https://github.com/filippomortari/spring-cloud-config-server-repository
+          clone-on-start: true
     fail-fast: true
+  security:
+    user:
+      name: spring_cloud_user
+      password: ###
 
 logging:
   level:
