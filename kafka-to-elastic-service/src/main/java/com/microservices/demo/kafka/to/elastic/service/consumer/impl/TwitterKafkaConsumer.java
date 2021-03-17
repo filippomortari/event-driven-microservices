@@ -1,4 +1,5 @@
 package com.microservices.demo.kafka.to.elastic.service.consumer.impl;
+
 import com.microservices.demo.config.KafkaConfigData;
 import com.microservices.demo.kafka.admin.client.KafkaAdminClient;
 import com.microservices.demo.kafka.avro.model.TwitterAvroModel;
@@ -33,6 +34,13 @@ public class TwitterKafkaConsumer implements KafkaConsumer<Long, TwitterAvroMode
         this.kafkaListenerEndpointRegistry = listenerEndpointRegistry;
         this.kafkaAdminClient = adminClient;
         this.kafkaConfigData = configData;
+    }
+
+    @EventListener
+    public void onAppStarted(ApplicationStartedEvent event) {
+        kafkaAdminClient.checkTopicsCreated();
+        LOG.info("Topics with name {} is ready for operations!", kafkaConfigData.getTopicNamesToCreate().toArray());
+        kafkaListenerEndpointRegistry.getListenerContainer("twitterTopicListener").start();
     }
 
     @Override
