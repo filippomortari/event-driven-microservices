@@ -1,6 +1,7 @@
 version: '3.7'
 services:
   elastic-1:
+    restart: on-failure
     image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION:-latest}
     hostname: elastic-1
     environment:
@@ -22,6 +23,7 @@ services:
       - ${GLOBAL_NETWORK:-elastic}
   elastic-2:
     image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}
+    restart: on-failure
     environment:
       - node.name=elastic-2
       - cluster.name=es-twitter-cluster
@@ -39,6 +41,7 @@ services:
       - ${GLOBAL_NETWORK:-elastic}
   elastic-3:
     image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}
+    restart: on-failure
     environment:
       - node.name=elastic-3
       - cluster.name=es-twitter-cluster

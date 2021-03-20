@@ -25,8 +25,8 @@ public class ElasticsearchConfig extends AbstractElasticsearchConfiguration {
         this.elasticConfigData = configData;
     }
 
-    @Bean
     @Override
+    @Bean
     public RestHighLevelClient elasticsearchClient() {
         UriComponents serverUri = UriComponentsBuilder.fromHttpUrl(elasticConfigData.getConnectionUrl()).build();
         return new RestHighLevelClient(
@@ -37,15 +37,15 @@ public class ElasticsearchConfig extends AbstractElasticsearchConfiguration {
                 )).setRequestConfigCallback(
                         requestConfigBuilder ->
                                 requestConfigBuilder
-                                        .setConnectTimeout(elasticConfigData.getConnectionTimeout())
-                                        .setSocketTimeout(elasticConfigData.getSocketTimeout())
-
+                                        .setConnectTimeout(elasticConfigData.getConnectTimeoutMs())
+                                        .setSocketTimeout(elasticConfigData.getSocketTimeoutMs())
                 )
         );
     }
 
     @Bean
-    public ElasticsearchOperations elasticsearchTemplate() {
+    public ElasticsearchOperations elasticsearchOperations() {
         return new ElasticsearchRestTemplate(elasticsearchClient());
     }
+
 }
